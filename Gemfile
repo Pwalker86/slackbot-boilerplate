@@ -4,3 +4,4 @@ gem "slack-ruby-client"
 gem 'slack-ruby-bot'
 gem "dotenv"
 gem "pry"
+gem 'blanket_wrapper'

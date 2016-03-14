@@ -8,6 +8,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    blanket_wrapper (3.0.2)
+      httparty
+      recursive-open-struct
     coderay (1.1.1)
     dotenv (2.1.0)
     eventmachine (1.0.9.1)
@@ -29,18 +32,23 @@ GEM
       launchy (~> 2.4)
     gli (2.13.4)
     hashie (3.4.3)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
     method_source (0.8.2)
     minitest (5.8.4)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     oj (2.14.6)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    recursive-open-struct (1.0.1)
     slack-ruby-bot (0.7.0)
       activesupport
       faye-websocket
@@ -67,6 +75,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  blanket_wrapper
   dotenv
   pry
   slack-ruby-bot

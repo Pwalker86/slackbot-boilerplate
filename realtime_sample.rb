@@ -1,6 +1,8 @@
 require 'slack-ruby-client'
+require 'blanket'
 require 'dotenv'
 require 'pry'
+require './insult'
 Dotenv.load
 
 Slack.configure do |config|
@@ -13,11 +15,13 @@ client = Slack::RealTime::Client.new
 client.on :message do |data|
   user_hash = {}
   channels = {}
-client.users.each{|k,v| user_hash[k["id"]] = k["name"]}
-client.channels.each {|k,v| channels[k["name"]] = k["id"]}
-binding.pry
-  if data["channel"] == channels["bot-testing"] && data["text"] =~ /\:insult\:/
-    client.web_client.chat_postMessage(channel: '#notifications', text: "#{user_hash[data["user"]]} is having fun")
+  text_arr = []
+  client.users.each{|x| user_hash[x[1]["id"]] = x[1]["name"]}.compact!
+  client.channels.each {|x| channels[x[1]["name"]] = x[1]["id"]}.compact!
+  text_arr = data.text.split(" ")
+  if data.text =~ /insult/
+    i = Insult.new
+    client.web_client.chat_postMessage(channel: '#notifications', text: "Hey #{text_arr[1]}! #{i.insult}")
   else
     puts data
   end
